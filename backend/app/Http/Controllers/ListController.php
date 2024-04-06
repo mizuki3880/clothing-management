@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ListController extends Controller
 {
@@ -29,5 +30,10 @@ class ListController extends Controller
             [], // ヘッダー
             JSON_UNESCAPED_UNICODE // オプション
         );
-    }    
+    }
+
+    public function getUser(){
+        $users = User::all();
+        return response()->json($users);
+    }
 }

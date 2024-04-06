@@ -6,4 +6,5 @@ use App\Http\Controllers\ListController;
 
 Route::group(['middleware' => ['api']], function() {
     Route::get('users', [ListController::class, 'index']);
+    Route::get('userinfo', [ListController::class, 'getUser']);
 });
