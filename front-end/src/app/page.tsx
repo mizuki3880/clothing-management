@@ -7,7 +7,9 @@ import {
   CardBody,
   CardFooter,
   Input,
+  Button,
 } from "@nextui-org/react";
+import PasswordInput from "./components/elements/input/PasswordInput";
 
 interface User {
   id: number;
@@ -17,14 +19,27 @@ interface User {
 export default function Home() {
   return (
     <>
-      <div className="">
-        <Card className=" w-auto">
-          <CardBody className=" flex justify-center ">
-            <div className=" flex flex-wrap justify-center ">
-              <p>ログイン</p>
-              <Input />
-              <p>パスワード</p>
-              <Input />
+      <div className="flex justify-center m-32">
+        <Card className="w-1/3">
+          <CardBody className="">
+            <div>
+              <p className="text-center">ログイン</p>
+              <div className="px-5">
+                <p className=" text-center m-5">ユーザー名</p>
+                <Input
+                  type="email"
+                  label="Email"
+                  variant="bordered"
+                  placeholder="ユーザ名を入力してください"
+                />
+              </div>
+              <div className="px-5">
+                <p className=" text-center m-5">パスワード</p>
+                <PasswordInput />
+              </div>
+              <div className="px-5 flex justify-center">
+                <Button className="m-5">サインイン</Button>
+              </div>
             </div>
           </CardBody>
         </Card>
