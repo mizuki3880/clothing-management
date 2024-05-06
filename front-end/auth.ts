@@ -14,8 +14,6 @@ export const {
   secret: process.env.AUTH_SECRET,
   callbacks: {
     async session({ token, session }) {
-      console.log({ sessionToken: token, session });
-
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
@@ -30,11 +28,8 @@ export const {
     },
     async jwt({ token }) {
       if (!token.sub) return token;
-
       const exisitingUser = await getUserById(token.sub);
-
       if (!exisitingUser) return token;
-
       token.role = exisitingUser.role;
       return token;
     },
