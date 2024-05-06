@@ -11,15 +11,8 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  secret: process.env.AUTH_SECRET,
   callbacks: {
-    // async signIn({ user }) {
-    //   const exisitingUser = await getUserById(user.id);
-
-    //   if (!exisitingUser || !exisitingUser.emailVerified) {
-    //     return false;
-    //   }
-    //   return true;
-    // },
     async session({ token, session }) {
       console.log({ sessionToken: token, session });
 
