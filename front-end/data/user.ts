@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import { db } from "lib/db";
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -19,5 +19,3 @@ export const getUserById = async (id: string) => {
     return null;
   }
 };
-
-
