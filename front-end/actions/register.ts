@@ -5,7 +5,7 @@ import { RegisterSchema } from "../schemas";
 import { db } from "lib/db";
 import { getUserByEmail } from "../data/user";
 
-const register = async (values: z.infer<typeof RegisterSchema>) => {
+export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -23,7 +23,7 @@ const register = async (values: z.infer<typeof RegisterSchema>) => {
 
   await db.user.create({
     data: {
-      name,
+      name: name,
       email,
       password: hashedPassword,
     },
@@ -32,6 +32,5 @@ const register = async (values: z.infer<typeof RegisterSchema>) => {
   //TODO: Send verification token email
 
   return { success: "ユーザーを作成しました" };
+  
 };
-
-export default register;

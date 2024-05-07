@@ -11,6 +11,14 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  events: {
+    async linkAccount({ user }) {
+      await db.user.update({
+        where: { id: user.id },
+        data: { emailVerified: new Date() },
+      });
+    },
+  },
   secret: process.env.AUTH_SECRET,
   callbacks: {
     async session({ token, session }) {
