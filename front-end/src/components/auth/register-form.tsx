@@ -20,7 +20,7 @@ import { CardWrapper } from "./card-wrapper";
 import { Button } from "../ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "../form-success";
-import register from "../../../actions/register";
+import { register } from "../../../actions/register";
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();

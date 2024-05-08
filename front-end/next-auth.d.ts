@@ -19,3 +19,5 @@ declare module "@auth/core/jwt" {
     role?: "ADMIN" | "USER";
   }
 }
+export { DefaultSession };
+

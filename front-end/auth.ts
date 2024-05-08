@@ -1,6 +1,6 @@
-import { db } from "lib/db";
+import { db } from "./src/lib/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth, { DefaultSession } from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth/";
 import authConfig from "./auth.config";
 import { getUserById } from "./data/user";
 import { UserRole } from "@prisma/client";
@@ -11,6 +11,10 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    signIn: "/auth/login",
+    error: "/auth/error",
+  },
   events: {
     async linkAccount({ user }) {
       await db.user.update({

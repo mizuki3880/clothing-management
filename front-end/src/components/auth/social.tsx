@@ -1,9 +1,10 @@
 "use clinet";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
 import { signIn } from "next-auth/react";
+import React from "react";
 
 export const Social = () => {
   const onClick = (provider: "google" | "github") => {
