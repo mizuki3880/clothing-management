@@ -1,6 +1,4 @@
 "use server";
-import { getVerificationTokenByToken } from "./../data/verficiation-token";
-
 import * as z from "zod";
 import { LoginSchema } from "../schemas";
 import { signIn } from "../auth";
