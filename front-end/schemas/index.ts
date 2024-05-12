@@ -9,6 +9,12 @@ export const LoginSchema = z.object({
   }),
 });
 
+export const ResetSchema = z.object({
+  email: z.string().email({
+    message: "メールアドレスを入力してください",
+  }),
+});
+
 export const RegisterSchema = z.object({
   email: z.string().email({
     message: "メールアドレスを入力してください",
