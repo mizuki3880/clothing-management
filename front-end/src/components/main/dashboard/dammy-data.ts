@@ -1,4 +1,15 @@
-export const ProductListData = [
+import { string } from "zod";
+
+export type ProductType = {
+  id: string;
+  name: string;
+  brand: string;
+  category: string;
+  size: string;
+  stockStatus: string;
+};
+
+export const ProductListData: ProductType[] = [
   {
     id: "INV001",
     name: "商品名例1",

@@ -1,4 +1,4 @@
-import Header from "@/components/main/header";
+import Header from "../../components/main/header";
 import React from "react";
 
 const MainPageLayout = ({ children }: { children: React.ReactNode }) => {

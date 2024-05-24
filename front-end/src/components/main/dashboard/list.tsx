@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Table,
@@ -7,46 +9,74 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { ProductListData } from "data/dammy-data";
+} from "../../ui/table";
+import { ProductListData } from "./dammy-data";
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import ProductListPagination from "./product-list-pagination";
 
-const TableCategories = [
-  "商品番号",
-  "商品名",
-  "ブランド",
-  "カテゴリ",
-  "サイズ",
-  "在庫状況",
-];
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+}
 
-const List = () => {
+export function List<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
   return (
-    <div className=" m-14">
+    <div className="m-14">
       <Table>
         <TableHeader>
-          <TableRow>
-            {TableCategories.map((category) => (
-              <TableHead key={category} className="w-[100px]">
-                {category}
-              </TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {ProductListData.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell className="font-medium">{item.id}</TableCell>
-              <TableCell className="font-medium">{item.name}</TableCell>
-              <TableCell className="font-medium">{item.brand}</TableCell>
-              <TableCell className="font-medium">{item.category}</TableCell>
-              <TableCell className="font-medium">{item.size}</TableCell>
-              <TableCell className="font-medium">{item.stockStatus}</TableCell>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}>
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length}>No results</TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
+
+      <ProductListPagination table={table} />
     </div>
   );
-};
-
-export default List;
+}
