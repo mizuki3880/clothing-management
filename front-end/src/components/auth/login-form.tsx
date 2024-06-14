@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { LoginSchema } from "../../../schemas";
-import { Input } from "../../components/ui/input";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -15,11 +15,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../components/ui/form";
+} from "@/components/ui/form";
 
 import { CardWrapper } from "./card-wrapper";
 import { Button } from "../ui/button";
-import { FormError } from "../../components/form-error";
+import { FormError } from "@/components/form-error";
 import { FormSuccess } from "../form-success";
 import login from "../../../actions/login";
 import React from "react";
