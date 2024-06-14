@@ -7,7 +7,7 @@ const DashboardPage = async () => {
   return (
     <div>
       <DashboardItem />
-      {/* <div>
+      <div>
         {JSON.stringify(session)}
         <form
           action={async () => {
@@ -17,7 +17,7 @@ const DashboardPage = async () => {
           }}>
           <button type="submit">Sign out</button>
         </form>
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -66,3 +66,20 @@ model PasswordResetToken {
   @@unique([email, token])
 }
 
+model Product {
+  id Int @id @default(autoincrement())
+  productID String
+  name String
+  brand String
+  category String
+  size String
+  stockStatus StockStatus
+  delete_at DateTime?
+  create_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum StockStatus {
+  IN_STOCK
+  OUT_OF_STOCK
+}
