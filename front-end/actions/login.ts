@@ -3,7 +3,6 @@ import * as z from "zod";
 import { LoginSchema } from "../schemas";
 import { signIn } from "../auth";
 import { DEFAULT_LOGIN_REDIRECT } from "../routes";
-import AuthError from "next-auth";
 import { generateVerificationToken } from "@/lib/token";
 import { getUserByEmail } from "data/user";
 import { sendVerificationEmail } from "@/lib/mail";
@@ -42,16 +41,12 @@ const login = async (values: z.infer<typeof LoginSchema>) => {
       password,
       redirectTo: DEFAULT_LOGIN_REDIRECT,
     });
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          return { error: "送信できませんでした" };
-        default:
-          return { error: "何か問題がありました" };
-      }
+  } catch (error: any) {
+    if (error?.name === "CredentialsSignin") {
+      return { error: "送信できませんでした" };
+    } else {
+      return { error: "何か問題がありました" };
     }
-    throw error;
   }
 };
 
