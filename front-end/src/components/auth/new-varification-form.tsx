@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { CardWrapper } from "../../components/auth/card-wrapper";
 import { newVerification } from "actions/new-verification";
-import { FormError } from "@/components/form-error";
+import { FormError } from "../../components/form-error";
 import { FormSuccess } from "../form-success";
 
 const NewVerificationForm = () => {
