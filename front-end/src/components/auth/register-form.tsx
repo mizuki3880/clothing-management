@@ -18,7 +18,7 @@ import {
 
 import { CardWrapper } from "./card-wrapper";
 import { Button } from "../ui/button";
-import { FormError } from "../form-error";
+import { FormError } from "@/components/form-error";
 import { FormSuccess } from "../form-success";
 import { register } from "../../../actions/register";
 
