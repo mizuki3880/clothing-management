@@ -10,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "../../ui/table";
-import { ProductListData } from "./dammy-data";
 import {
   ColumnDef,
   flexRender,

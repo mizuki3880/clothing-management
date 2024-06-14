@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { ProductType } from "./dammy-data";
+
 import { Button } from "../../../components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import {
@@ -12,11 +12,16 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "../../../components/ui/dropdown-menu";
+import { ProductType } from "./dammy-data";
 
 export const TableCategories: ColumnDef<ProductType>[] = [
   {
     accessorKey: "id",
     header: "商品ID",
+  },
+  {
+    accessorKey: "productID",
+    header: "商品コード",
   },
   {
     accessorKey: "name",
@@ -54,7 +59,8 @@ export const TableCategories: ColumnDef<ProductType>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}>
+            // onClick={() => navigator.clipboard.writeText(payment.id)}
+            >
               商品を編集する
             </DropdownMenuItem>
             <DropdownMenuSeparator />
